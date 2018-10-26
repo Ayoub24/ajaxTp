@@ -1,23 +1,19 @@
-$(document).ready(function () {
-    $(".btn").click(function () {
-        let Text; 
-        //$("#result").html("Hello <b>world</b>!");
+$(document).ready( () => {
+    $(".btn").click( () => {
+        let Text;        
         $.ajax({
            url: 'https://jsonplaceholder.typicode.com/posts',
            method: 'get',          
            dataType: 'json',
-           success: function (response) {
-               for (i = 1; i< response.length ; i ++){
-                    Text = Text + "Post ID : " + response[i].id + '<br>' + "Post Body : " + response[i].body + '<br>';
-               }
+           success: (response) => {
+               response.forEach((post, index) => {
+                   Text = Text + "Post ID : " + response[index].id + '<br>' + "Post Body : " + response[index].body + '<br>';
+               })               
                $("#result").html(Text);
            },
-           error: function (error) {
+           error: (error) => {
                alert(error);  
-           },  
-           
-       });
-     
-        
+           },           
+       });        
     });
 });
